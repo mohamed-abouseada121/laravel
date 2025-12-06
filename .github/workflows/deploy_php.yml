@@ -41,4 +41,4 @@ jobs:
 
             cd $TARGET_DIR
             composer install
-            php artisan migrate
+            php artisan migrate --force
