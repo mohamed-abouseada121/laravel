@@ -19,8 +19,7 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SSH_KEY }}
           script: |
-            sudo mkdir -p /var/www/laravel
-            sudo chown -R ubuntu:ubuntu /var/www/laravel
+            
             FLAG_FILE="/home/${{ secrets.SERVER_USER }}/.Setup_Packages_First_Time"
             TARGET_DIR="/var/www/laravel"
             if [ ! -f "$FLAG_FILE" ]; then
@@ -34,6 +33,7 @@ jobs:
             if [ ! -d "$TARGET_DIR" ]; then
               echo "Cloning repo for the first time..."
               git clone -b main --single-branch https://github.com/mohamed-abouseada121/laravel.git $TARGET_DIR
+              sudo chown -R ubuntu:ubuntu /var/www/laravel
             else
               echo "Pulling latest changes..."
               cd $TARGET_DIR
