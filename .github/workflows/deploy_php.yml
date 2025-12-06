@@ -19,6 +19,8 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SSH_KEY }}
           script: |
+            sudo mkdir -p /var/www/laravel
+            sudo chown -R ubuntu:ubuntu /var/www/laravel
             FLAG_FILE="/home/${{ secrets.SERVER_USER }}/.Setup_Packages_First_Time"
             TARGET_DIR="/var/www/laravel"
             if [ ! -f "$FLAG_FILE" ]; then
