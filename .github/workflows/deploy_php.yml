@@ -32,7 +32,7 @@ jobs:
             # 2. Clone or Pull
             if [ ! -d "$TARGET_DIR" ]; then
               echo "Cloning repo for the first time..."
-              git clone -b main --single-branch https://github.com/mohamed-abouseada121/laravel.git $TARGET_DIR
+              sudo git clone -b main --single-branch https://github.com/mohamed-abouseada121/laravel.git $TARGET_DIR
               sudo chown -R ubuntu:ubuntu /var/www/laravel
             else
               echo "Pulling latest changes..."
