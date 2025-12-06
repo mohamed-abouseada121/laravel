@@ -34,12 +34,7 @@ jobs:
               echo "Cloning repo for the first time..."
               sudo git clone -b main --single-branch https://github.com/mohamed-abouseada121/laravel.git $TARGET_DIR
               sudo chown -R ubuntu:ubuntu /var/www/laravel
-              echo "DB_CONNECTION=mysql" > .env
-              echo "DB_HOST=${{ secrets.DB_HOST }}" >> .env
-              echo "DB_PORT=3306" >> .env
-              echo "DB_DATABASE=${{ secrets.DB_DATABASE }}" >> .env
-              echo "DB_USERNAME=${{ secrets.DB_USERNAME }}" >> .env
-              echo "DB_PASSWORD=${{ secrets.DB_PASSWORD }}" >> .env
+
             else
               echo "Pulling latest changes..."
               cd $TARGET_DIR
@@ -48,6 +43,11 @@ jobs:
             fi
             
             cd $TARGET_DIR
-
+            echo "DB_CONNECTION=mysql" > .env
+            echo "DB_HOST=${{ secrets.DB_HOST }}" >> .env
+            echo "DB_PORT=3306" >> .env
+            echo "DB_DATABASE=${{ secrets.DB_DATABASE }}" >> .env
+            echo "DB_USERNAME=${{ secrets.DB_USERNAME }}" >> .env
+            echo "DB_PASSWORD=${{ secrets.DB_PASSWORD }}" >> .env  
             composer install
             php artisan migrate --force
